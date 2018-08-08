@@ -38,123 +38,165 @@ int subtract(std::vector<int> &userNumbers);
 int main()
 {
 	//****** declarations ******
-		int menuSelection = 0;
-		std::vector <int> userNumbers{ 0 };
-		//std::vector <int> input;
+		int menuSelection = 99;
+		std::vector <int> userNumbers;
 		int insertElement2 = 0;
 		int insertNumber = 0;
 		int insertElement = 0;
 		int addNumber = 0;
-		//int element;
-		//std::string input2;
-		int input2;
+		std::string input2;
 
-		/*
-		std::cout << "Please Enter a series of numbers, separated by spaces, end with a non-number character:  " << std::endl;
 
-		while (std::cin >> element)
+		//***** starts while loop for switch *****
+		while (menuSelection != 0)
 		{
-			input.push_back(element);
-		}
-
-		std::cout << "This is your vector:  " << std::endl;
-		print_vector(input);
-		std::cout << "\n\n";
-		*/
-
-		do
-		{
-
+			//***** prints selection menu *****
 			std::cout << "Please select an option below:  " << std::endl;
-			std::cout << "1 - Input Numbers\n2 - Add Vector Numbers\n3 - Subtract Vector Numbers\n4 - Delete Last Element\n5 - Clear Vector\n6 - Insert New Element At Back Of Vector\n7 - Insert At Specific Element\n8 - Delete Specific Element\n0 - Exit Program\n\n";
-			std::cin >> input2;
+			std::cout << "1 - Input Numbers\n2 - Add Vector Numbers\n3 - Subtract Vector Numbers\n4 - Delete Last Element\n5 - Clear Vector\n6 - Insert New Element At Back Of Vector\n7 - Insert At Specific Element\n8 - Delete Specific Element\n9 - Print Vector\n0 - Exit Program\n\n";
+			
 
-				switch (input2)
+			//***** uses while loop to grab user selection, responds back invalad if selection is incorrect *****
+			while (1)
+			{
+				std::getline(std::cin, input2);
+				std::stringstream myStream(input2);
+				if (myStream >> menuSelection)
 				{
-				case 1:
-				{
-					input_numbers();
 					break;
 				}
-				case 2:
+				std::cout << "Invalid number, please try again" << std::endl;
+			}
+
+				//***** start switch/case *****
+				switch (menuSelection)
 				{
-					add(userNumbers);
-					break;
-				}
-				case 3:
-				{
-					subtract(userNumbers);
-					break;
-				}
-				case 4:
-				{
-					//*****deletes last element*****
-					std::cout << "Vector before last element removal is:  " << &userNumbers << std::endl;
-					userNumbers.back() = '\0';
-					std::cout << "Vector without last element is now:  " << &userNumbers << std::endl;
-					break;
-				}
-				case 5:
-				{
-					//*****Clear Vector*****
-					std::cout << "Vector before clearing is:  " << &userNumbers << std::endl;
-					userNumbers.clear();
-					if (userNumbers.empty())
+					case 1:
 					{
-						std::cout << "Vector has been emptied." << std::endl;
+						//***** gets vector numbers from user *****
+						std::cout << "Please enter a list of numbers seperated by spaces to add to the vector: " << std::endl;
+
+						std::string input;  // initialize string for std::cin
+						std::getline(std::cin, input);  // get line from std::cin into input
+						std::stringstream stream(input);  // make string stream
+
+						while (1)
+						{
+							int n;
+							stream >> n;
+							if (!stream)
+								break;
+							userNumbers.emplace_back(n);  // Add number to end of vector
+						}
+
+						std::cout << std::endl;  // adds new line.
+						std::cout << "Your vector numbers are:  ";
+						print_vector(userNumbers);  // call print function to display vector numbers
+						break;
 					}
-					else
+					case 2:
 					{
-						std::cout << "ERROR:  Vector was not emptied, please check code." << std::endl;
+						//***** runs add function *****
+						add(userNumbers);
+						break;
 					}
-					break;
-				}
-				case 6:
-				{
-					//*****Insert new element at back of vector*****
-					//int addNumber = 0;
+					case 3:
+					{
+						//***** runs subtract function *****
+						subtract(userNumbers);
+						break;
+					}
+					case 4:
+					{
+						//***** deletes last element *****
+						std::cout << "Current Vector numbers are:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
 
-					std::cout << "Enter a number to add to the end of the vector." << std::endl;
-					scanf("%d", &addNumber);
-					std::cout << "Current Vector numbers are:  " << &userNumbers << std::endl;
-					userNumbers.emplace_back(addNumber);
-					std::cout << "New Vector numbers are now:  " << &userNumbers << std::endl;
-					break;
-				}
-				case 7:
-				{
-					//*****Insert at a specific element*****
-					//int insertNumber = 0;
-					//int insertElement = 0;
+						userNumbers.pop_back();  //removes end element
 
-					std::cout << "Enter a number you would like inserted into the vector." << std::endl;
-					scanf("%d", &insertNumber);
-					std::cout << "Enter the element number of the data you wish to replace with previous number you input." << std::endl;
-					scanf("%d", &insertElement);
-					insertElement = insertElement - 1;
-					std::cout << "The vector before inserting a new number is:  " << &userNumbers << std::endl;
-					userNumbers.emplace(userNumbers.begin() + insertElement, insertNumber);
-					std::cout << "The new vector after number insertion is:  " << &userNumbers << std::endl;
-					break;
-				}
-				case 8:
-				{
-					//*****delete specific element*****
-					//int insertElement2 = 0;
+						std::cout << "Vector numbers after last element deletion:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+						break;
+					}
+					case 5:
+					{
+						//***** Clear Vector *****
+						std::cout << "Current Vector numbers are:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
 
-					std::cout << "Enter the element number of the data you wish to remove." << std::endl;
-					scanf("%d", &insertElement2);
-					insertElement2 = insertElement2 - 1;
-					std::cout << "The vector before deleting a specific element was:  " << &userNumbers << std::endl;
-					userNumbers.erase(userNumbers.begin() + insertElement2);
-					std::cout << "The new vector after element removal is:  " << &userNumbers << std::endl;
-					break;
-				}
-				default:
-					break;
+						userNumbers.clear();  //clears/empties entire vector
+
+						if (userNumbers.empty())  //checks if vector is empty
+						{
+							std::cout << "Vector has been emptied." << std::endl;
+						}
+						else
+						{
+							std::cout << "ERROR:  Vector was not emptied, please check code." << std::endl;
+						}
+						break;
+					}
+					case 6:
+					{
+						//***** Insert new element at back of vector *****
+		
+						std::cout << "Enter a number to add to the end of the vector." << std::endl;
+						scanf("%d", &addNumber);
+						std::cout << "Current Vector numbers are:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+
+						userNumbers.emplace_back(addNumber);  //adds number to the back of vector
+
+						std::cout << "New Vector numbers are now:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+						break;
+					}
+					case 7:
+					{
+						//***** Insert at a specific element *****
+
+						std::cout << "Enter a number you would like inserted into the vector." << std::endl;
+						scanf("%d", &insertNumber);
+						std::cout << "Enter the element number of the data you wish to replace with previous number you input." << std::endl;
+						scanf("%d", &insertElement);
+						insertElement = insertElement - 1;  //adjust user's input to minus 1 to take into account userNumbers.begin() below on line 168
+
+						std::cout << "Current Vector numbers are:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+
+						userNumbers.emplace(userNumbers.begin() + insertElement, insertNumber);  //inserts user's number into specific position in vector
+
+						std::cout << "Vector numbers after specific element insert are:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+						break;
+					}
+					case 8:
+					{
+						//***** delete specific element *****
+
+
+						std::cout << "Enter the element number of the data you wish to remove." << std::endl;
+						scanf("%d", &insertElement2);
+						insertElement2 = insertElement2 - 1;  //adjust user's input to minus 1 to take into account userNumbers.begin() below on line 186
+						
+						std::cout << "Current Vector numbers are:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+
+						userNumbers.erase(userNumbers.begin() + insertElement2);  //removes specific element
+				
+						std::cout << "The new vector after element removal is:  " << std::endl;
+						print_vector(userNumbers);  // call print function to display vector numbers
+						break;
+					}
+					case 9:
+					{
+						std::cout << "Your vector numbers are:  ";
+						print_vector(userNumbers);  // call print function to display vector numbers
+						break;
+					}
+					default:
+						break;
 				}
 		}
-	while (input2 != 0);
 
 	return 0;
 }
@@ -163,87 +205,24 @@ int main()
 //***** print function for displaying vector *****
 void print_vector(const std::vector<int>& userNumbers)
 {
-	for (const auto& item : userNumbers)
+	
+	for (const auto& item : userNumbers) //uses's memory location of each item (element) in the vector to "go through vector"
 	{
-		std::cout << item << " ";
+		std::cout << item << " "; //prints out vector elements and add a space after each item (element)
 	}
-	std::cout << "\n";
-
-}
-
-
-//***** inputs numbers into vector *****
-int input_numbers(void)
-{
-	std::vector <int> input;
-	int element;
-
-	std::cout << "Please Enter a series of numbers, separated by spaces, end with a non-number character:  " << std::endl;
-
-	while (std::cin >> element)
-	{
-		input.push_back(element);
-	}
-
-	std::cout << "This is your vector:  " << std::endl;
-	print_vector(input);
 	std::cout << "\n\n";
-	
-	return 0;
-	/*
-	int user_input = 0;
-	char more_numbers = {};
-	int count = 0;
 
-	//check to see if this is the first number being input
-	if (count == 0)
-	{
-		std::cout << "Please input your first number.\n" << std::endl;
-		std::cin >> user_input;
-		{
-			userNumbers.emplace_back(user_input);
-			count++;
-		}
-	
-	//allow user to input additional numbers
-	
-		std::cout << "Please input another number.\n" << std::endl;
-		std::cin >> user_input;
-		{
-			userNumbers.emplace_back(user_input);
-			count++;
-		}
-	}
-	//check to see if the user would like to input additional numbers
-	std::cout << "Would you like to add another number? (Y/N)\n" << std::endl;
-	std::cin >> more_numbers;
-	//if the user wants to add additional numbers, call the function again
-	if (more_numbers == 'Y' || more_numbers == 'y')
-	{
-		input_numbers(userNumbers);
-	}
-	//if the user doesn't want to add additional numbers, return to menu
-	else if (more_numbers == 'N' || more_numbers == 'n')
-	{
-		return 1;
-	}
-	//error
-	else
-	{
-		return -1;
-	}
-	return 1;
-	*/
 }
 
-//***** add funciont *****
+
+//***** add  *****
 int add(std::vector<int> &userNumbers)
 {
 
 	int sum_of_userNumbers = 0;
-	for (const auto& element : userNumbers)
+	for (const auto& element : userNumbers)  //uses's memory location of each element in the vector to "go through vector"
 	{
-		sum_of_userNumbers += element;
+		sum_of_userNumbers += element;  //adds each element to the previous sum as the FOR loop continues
 	}
 	std::cout << "The sum of all numbers in vector (low to high index number) is:  " << sum_of_userNumbers << std::endl;
 	return 0;
@@ -253,9 +232,9 @@ int add(std::vector<int> &userNumbers)
 int subtract(std::vector<int> &userNumbers)
 {
 	int diff_of_userNumbers = 0;
-	for (const auto& element : userNumbers)
+	for (const auto& element : userNumbers)  //uses's memory location of each element in the vector to "go through vector"
 	{
-		diff_of_userNumbers -= element;
+		diff_of_userNumbers -= element;  //subtracts each element from the previous difference as the FOR loop continues
 	}
 	std::cout << "The difference of all numbers in vector (low to high index number) is:  " << diff_of_userNumbers << std::endl;
 	return 0;
