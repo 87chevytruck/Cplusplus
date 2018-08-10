@@ -15,7 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2_Lab_B.cpp">
+    <ClInclude Include="person.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3_PerfLab_3A.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
