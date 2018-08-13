@@ -21,6 +21,7 @@ Lab 3A
 #include <fstream>
 #include <vector>
 #include <string>
+#include <sstream>
 #include "person.h"
 
 //using namespace IQT;
@@ -43,6 +44,7 @@ int main()
 
 	roster.clear();
 
+	while (1);
 	return 0;
 
 }
@@ -52,8 +54,16 @@ int main()
 //Purpose: write out the logic
 int log_roster(std::vector<Person>& roster, std::ofstream& outfile)
 {
+	int count = 0;
+	while (!roster.empty())  //only runs when there is data in the vector roster
+	{
+		//pushes info from roster into the outfile in a single line, separating the objects by spaces  
+		outfile << roster.back().getFname() << " " << roster.back().getLname() << " " << roster.back().getAge() << " " << roster.back().getGender() << std::endl;
+		roster.pop_back();
+	}
 
-	return 90;
+	count++;  //increase count
+	return count;
 }
 
 //Arguments: std::vector<Person>& roster - a reference to a vector that will contain the students you input 
@@ -61,12 +71,69 @@ int log_roster(std::vector<Person>& roster, std::ofstream& outfile)
 //Purpose: receive input and load the vector 
 int generate_roster(std::vector<Person>& roster)
 {
-	Person Student;
-	Student.setFname(firstName);
-	Student.setLname();
-	Student.setAge();
-	Student.setGender();
 
-	return 90;
+	//***** Declarations *****
+	std::string firstName;
+	std::string lastName;
+	int age = 0;
+	std::string gender;
+	std::string input;  //used for string to int conversion with:: stringstream myStream
+	int count = 0;
+	int exit = 0;  //used to continue to input students or not
+	
+	Person Student(firstName, lastName, age, gender);  //assigns the class Person with an object called Student, includes which objects Student will have in it (members)
+
+	while (exit == 0)  //takes input from user for exit, if user types 0, loop continues.
+	{
+		std::cout << "Enter first name." << std::endl;  //prompts user for input
+		std::getline(std::cin, firstName);  //gets input from user
+		Student.setFname(firstName);  //sets First Name
+	
+
+		std::cout << "Enter last name." << std::endl;  //prompts user for input
+		std::getline(std::cin, lastName);  //gets input from user
+		Student.setLname(lastName);  //sets Last Name
+	
+
+		while (true)
+		{
+			std::cout << "Enter age." << std::endl;  //prompts user for input
+			std::getline(std::cin, input);  //gets input from user
+			std::stringstream myStream(input);  //converts string to int for age
+			if (myStream >> age)
+			{
+				Student.setAge(age);  //sets age only if a valid input
+			
+				break;
+			}
+			std::cout << "ERROR:  Invalid input for Age." << std::endl;
+		
+		}
+
+		std::cout << "Enter gender." << std::endl;  //prompts user for input
+		std::getline(std::cin, gender);  //gets input from user
+		Student.setGender(gender);  //sets gender
+
+
+		//*****  Provides users to continue inputting students or exit program *****
+		while (true)
+		{
+			std::cout << "If you would like to enter another person, type 0.  Otherwise, type another number to continue with program." << std::endl;  //prompts user for input
+			std::getline(std::cin, input);  //gets input from user
+			std::stringstream myStream(input);  //converts string to int for exit
+			if (myStream >> exit)
+			{
+				break;  //breaks while loop
+			}
+			std::cout << "ERROR:  Invalid input." << std::endl;
+
+		}
+
+		roster.push_back(Student);  //pushes each new student to the end of the vector to allow room for new student at the top of roster
+	}
+		
+	count++;
+
+	return count;
 
 }

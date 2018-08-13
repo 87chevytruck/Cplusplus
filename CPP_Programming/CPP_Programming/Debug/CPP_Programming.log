@@ -1,5 +1,2 @@
 ﻿  3_PerfLab_3A.cpp
-c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\3_perflab_3a.cpp(65): error C3867: 'Person::setFname': non-standard syntax; use '&' to create a pointer to member
-c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\3_perflab_3a.cpp(66): error C3867: 'Person::setLname': non-standard syntax; use '&' to create a pointer to member
-c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\3_perflab_3a.cpp(67): error C3867: 'Person::setAge': non-standard syntax; use '&' to create a pointer to member
-c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\3_perflab_3a.cpp(68): error C3867: 'Person::setGender': non-standard syntax; use '&' to create a pointer to member
+  CPP_Programming.vcxproj -> C:\Users\DOTlaptop\Desktop\CPP MyRepos\CPP_Programming\Debug\CPP_Programming.exe

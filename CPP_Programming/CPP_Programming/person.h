@@ -19,27 +19,64 @@ Return the number of students recorded.
 
 
 class Person {
+	//***** sets private members of class Person *****
 private:
 	std::string firstName;
 	std::string lastName;
 	int age;
 	std::string gender;
 
+
+	//***** sets public members of class Person *****
 public:
-	char setFname(std::string firstName)
+	Person(std::string first, std::string last, int a, std::string gen)  //needed to declare Student as a class Person in the main cpp file
 	{
-		std::getline(std::cin, firstName);
+		//***** Declarations used in functions *****
+		firstName = first;
+		lastName = last;
+		age = a;
+		gender = gen;
 	}
-	char setLname(std::string lastName)
+	
+	void setFname(std::string first)  //function to set first name, throws into Person above
 	{
-		std::getline(std::cin, lastName);
+		firstName = first;
 	}
-	int setAge(int age)
+
+	void setLname(std::string last)  //function to set last name, throws into Person above
 	{
-		std::cin >> age;
+		lastName = last;
 	}
-	char setGender(std::string gender)
+
+	void setAge(int a)  //function to set age, throws into Person above
 	{
-		std::getline(std::cin, gender);
+		age = a;
 	}
+
+	void setGender(std::string gen)  //function to set gender, throws into Person above
+	{
+		gender = gen;
+	}
+
+	std::string getFname()  //set function to "grab" object from vector in main cpp file
+	{
+		return firstName;
+	}
+
+	std::string getLname()  //set function to "grab" object from vector in main cpp file
+	{
+		return lastName;
+	}
+
+	int getAge()  //set function to "grab" object from vector in main cpp file
+	{
+		return age;
+	}
+
+	std::string getGender()  //set function to "grab" object from vector in main cpp file
+	{
+		return gender;
+
+	}
+
 };

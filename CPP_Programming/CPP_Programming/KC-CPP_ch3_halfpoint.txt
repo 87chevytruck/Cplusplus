@@ -1,0 +1,15 @@
+Classes:
+A container, similar to struct.  Members can be private or public (controls access by other classes in a diferent scope).
+
+
+Member Function:
+Members are the things inside of a Class, and member function is simply a function that is a member.  Similar to the functions we create for other programs that we prototype, only these are inside the Classes.
+
+
+Objects and their Lifecycles:
+objects are boxes.  Those boxes can be a part of larger boxes like a class or struct.  Objects can be inside another object, which is inside another object, etc., etc.  Lifecycles would be the contructing and deconstructing of the objects.  constructing builds and points to the object.  Deconstruction uses the " ~ " to deconstruct the object.  Essentially freeing up memory that the object was using.
+
+
+Constants and "friendship":
+Constants don't change.  So if a variable is a constant, that variable doesn't change.  Friendships allow private members of a class to be accessed by a another class/scope.
+
