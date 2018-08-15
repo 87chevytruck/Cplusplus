@@ -1,0 +1,36 @@
+DUE 1500 today (14AUG2018)
+===========================================================
+LABEL: ch05_CPP_synopsis
+--------------------------------------------------------------------------------------------
+OBJECTIVE:
+explain in you own words the following, be sure to include examples of USE!!!
+(think toyota example we have discussed in class)
+
+
+ch05:
+
+resources and how they are managed:
+since a class is tied to a resouce (memory), when the object is finished being used at the end of it's life cycle, the resource (memory) is automatically freed.
+in C, this would require far more code to be written manually to do the same thing.
+
+
+
+
+error-handling (different types of them):
+error-handling can be approached in many methods such as simply terminating entrie program upon error, returning a value of an error when error is detected (can help troubleshoot why an error happened), and calling a function like using the Exception Handling.  Exception Handling as a built in class already that can be used to expand upont with custom responses.  These exceptions can then be used to safely throw an error response while keeping the program running.  These would work well for times in the past were an IF statement was used to check true or false for a user's input.  Instead, we can throw an exception so that if a user types a string, but we expected an int, we can throw and exception and say, "you typed in a string of letters, please type a number".  Multiple exceptions with different variants can exist for the same spot of code.  There can be an exception that throws one respond for an input that is a string, and another response for an input that is a double or char.  The " ... ", can be used as a default "catch all" if no other exception matches first.
+
+
+
+
+moving and copying and when to use which over the other:
+copying makes a complete copy of the object, where as moving only "copies" the values from that object.  Using the car analogy, copying would be like taking a Ford F150 and copying it to make another Ford F150 on the assembly line.  Moving would be more like taking the Ford F150, and borrowing parts (values) from it, and putting that into a different vehicle like the Ford Expodition where a lot of the mechanical items are the same (engine, trans, axles, breaks, etc.), but the frame and body are completely different than the F150.
+
+
+
+
+
+l-values and r-values(specifically why r-values are special, give an example):
+l-values can basically be and go anywhere.  r-values MUST be on the "rightside" of the =.  examples of l-value would be "int a", example of r-value would be an equation such as "a + b".  l-values get copied but r-values can only be moved.  This is because an r-value "produces" a value, and copying it by itself without input provides no value.
+
+
+

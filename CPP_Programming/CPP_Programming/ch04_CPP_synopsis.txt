@@ -1,0 +1,35 @@
+DUE 1500 today (14AUG2018)
+===========================================================
+LABEL: ch04_CPP_synopsis 
+--------------------------------------------------------------------------------------------
+OBJECTIVE:
+explain in you own words the following, be sure to include examples of USE!!!
+(think toyota example we have discussed in class)
+
+ch04:
+
+function overloading:
+
+function overloading allows for using the same function multiple times:
+Example would be calling a function "void Ford".  Ford has many types of cars, trucks, suvs, etc.
+The category of vehicle such as car, truck, and suv could be conisdered the type such as int, double, and char.
+I can use void Ford Truck, void Ford Car, void Ford SUV.  I would NOT be able to reuse the function for items within those categories.
+For example, void Ford Truck F150 and void Ford Truck F250 wouldn't work as they are both "trucks" and are not distinguishable enough like Ford Mustang and Ford F150 would be.
+
+
+
+
+
+operator overloading:
+
+operator overloading has the same "category" limitations as function overloading, but it's different as it's actually changing how the operator work (could possibly change the + to work like a * would, and a - to work like a % would).  Provides complete control on how the operator would be used.  While I understand how this works, i don't understand why someone would choose to change how an operator works.
+
+
+
+
+
+templates:
+
+templates provide a blueprint/guide for something.  using typenames, you can create templates that don't specifi int, char, double, but provide it a specific type (T, U, R, etc.).  The purpose of this would be that the function doesn't care if it has a char or an int, but that they are both the same.  Or it could not care if it is a char or int or double, but wants to make sure that both values coming are different types for use within the code function.
+
+
