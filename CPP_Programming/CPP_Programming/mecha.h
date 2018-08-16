@@ -27,14 +27,34 @@ public:
 	This can be either really simple (just amount of damage enemy mech does to you...
 	Or you can go in on this and do damage types and such.
 	*/
-	virtual int computeDamageReceived(int damagePts) {
-		// generic code here
+	void computeDamageReceived(int damagePts) {
+		
+		hitPoints = hitPoints - damagePts;
 
-		return 0;
 	}
 	// Bare minimum... use this to see if your mech is dead yet
-	virtual int getHP() {
+	int getHP() {
 		std::cout << "\nHit Points Remaining:  " << hitPoints << std::endl;
+		return hitPoints;
+	}
+	int printPWR() {
+		std::cout << "\nPower Remaining:  " << power << std::endl;
+		return power;
+	}
+	int getPWR() {
+
+		return power;
+	}
+	void drawPWR(int powerDraw) {
+
+		power = power - powerDraw;
+	}
+	void rechargePWR(int powerCharge) {
+
+		power = powerCharge;
+	}
+	int computeHP() {
+		
 		return hitPoints;
 	}
 

@@ -1,12 +1,15 @@
 
 #include "mecha.h"
 #include "mecha_subs.h"
+#include "weapon.h"
+#include <string>
+#include <sstream>
 
 int main() {
 	// TODO: Create your weapons here. 
 	// Don't over think this step... just create weapon objects. One weapon can be used on multiple mechs
-	Weapon BFF1("051ANNR", "Rifle", 100, 20);
-	Weapon BFF2("063ANAR", "Assault Rifle", 50, 10);
+	Weapon BFF1(".50 Cal Sniper", "Rifle", 100, 20);
+	Weapon BFF2(".50 Cal Full Auto", "Assault Rifle", 50, 10);
 	Weapon MSAC1("SALINE05", "Spread Missile", 200, 50);
 	Weapon MC1("Machine Cannon", "Automatic Cannon", 300, 50);
 	Weapon TNM1("Tactical Nuclear Missile", "Missile Launcher", 600, 100);
@@ -22,7 +25,7 @@ int main() {
 		// update with user input
 		validHP = WG.setHP(2000);
 	}
-	WG.set_leftHand_weapon(BFF2);
+	WG.set_leftHand_weapon(TNM1);
 	WG.set_rightHand_weapon(BFF1);
 	WG.set_leftBack_weapon(MSAC1);
 	WG.set_rightBack_weapon(MSAC1);
@@ -49,6 +52,16 @@ int main() {
 	T9.set_leftHand_weapon(MC1);
 	T9.set_rightHand_weapon(MC1);
 
+
+	// Default Mecha for initial assignment to player1 and player2
+	//DEFAULT playerINT("Default", "Default", 100);
+	//DEFAULT * player1 = &playerINT;
+	//DEFAULT * player2 = &playerINT;
+//**********************************************	Mecha *player1 = NULL;
+//**********************************************	Mecha *player2 = NULL;
+	NEXT * player1 = &WG;
+	Terminator * player2 = &T9;
+
 	// Now we can do our main logic
 	WG.display_stats();
 	Ksh.display_stats();
@@ -61,7 +74,7 @@ int main() {
 	int count = 0;
 
 	//allow user 1 to select a Mecha
-	while (count == 0)
+/*	while (count == 0)
 	{
 		std::cout << "Player 1:  Select your Mecha." << std::endl;
 		std::cout << "Type \" WG \" to select the White Glint Mecha." << std::endl;
@@ -73,6 +86,8 @@ int main() {
 		{
 			//assign player1 to the White Glint Mecha
 			NEXT * player1 = &WG;
+			//player1 = (Mecha *)&WG;
+			//player1 = (NEXT *)&WG;
 			std::cout << "Player 1 is now White Glint Mecha" << std::endl;
 			player1->display_stats();
 			count++;
@@ -119,6 +134,7 @@ int main() {
 		{
 			//assign player2 to the White Glint Mecha
 			NEXT * player2 = &WG;
+			//player2 = (NEXT *)&WG;
 			std::cout << "Player 2 is now White Glint Mecha" << std::endl;
 			player2->display_stats();
 			count++;
@@ -149,125 +165,366 @@ int main() {
 		{
 			std::cout << "ERROR:  Invalid response for Player 2.  Please try again." << std::endl;
 		}
-	}
+	}*/
 
+	/*std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+	player1->get_leftHand_weapon();  // displays which weapon was selected
+	std::cout << "\nPlayer 1 Before Attack:  ";
+	player1->printPWR();  // displays current power
+	player1->drawPWR(player1->leftHandCost());  //calculates power draw 
+	std::cout << "\nPlayer 1 After Attack:  ";
+	player1->printPWR();
+	std::cout << "\n-----------------------------------------------------------------" << std::endl;
+	std::cout << "\nPlayer 2 Before Attack:  ";
+	player2->getHP(); //displays remaing health for enemy
+	player2->computeDamageReceived(player1->leftHandDMG());
+	std::cout << "\nPlayer 2 After Attack:  ";
+	player2->getHP();
+	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;*/
 
-	
 
 	//end the game if a player's mech hits <= 0
-	/*		while (player1 HP >= 0 && player2 HP >= 0)
-			{  
-			
-			//allow users to take turns attacking
-			//----allow users to decide which weapon to use during the their turn
-			//prevent actions if user runs out of power
-			//allow user to end their turn regardless of how much power is left
+	while (player1->computeHP() > 0 && player2->computeHP() > 0)
+	{
 
+		//allow users to take turns attacking
+		//----allow users to decide which weapon to use during the their turn
+		//prevent actions if user runs out of power
+		//allow user to end their turn regardless of how much power is left
+		player1->rechargePWR(100);
+		player2->rechargePWR(100);
 
-					while (player1 PWR >= 0)
-					{
-						prints player menu
-						get input
-					
-						{
-						switch(input)
-							case: 1 Select weapon A
-								{
-									use player1.weaponA (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player2->getHP(); //displays remaing health for enemy
-								}
-							case: 2 Select weapon B
-								{
-									use player1.weaponB (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player2->getHP(); //displays remaing health for enemy
-								}
-							case: 3 Select weapon C
-								{
-									use player1.weaponC (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player2->getHP(); //displays remaing health for enemy
-								}
-							case: 4 Select weapon D
-								{
-									use player1.weaponD (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player2->getHP(); //displays remaing health for enemy
-								}
-							case: 5 Print Current Mech Stats
-								{
-									player1.display_stats
-									player1->getHP(); //displays remaing health for current player
-								}
-							case: 6 End turn early
-								{
-									break;
-								}
-						}				
-					}
+		while (player1->getPWR() >= 1)
+		{
+			//prints player menu
+			std::cout << "\nPlayer 1, please select from an option below: (type the number of the option)" << std::endl;
+			std::cout << "1 - Use Left Hand Weapon" << std::endl;
+			std::cout << "2 - Use Right Hand Weapon" << std::endl;
+			std::cout << "3 - Use Left Back Weapon" << std::endl;
+			std::cout << "4 - Use Right Back Weapon" << std::endl;
+			std::cout << "5 - Print Current Mech Stats" << std::endl;
+			std::cout << "6 - End player turn early" << std::endl;
 
-					while (player2 PWR >= 0)
-					{
-						prints player menu
-						get input
+			int menuSelection = 0;
 
-						{
-						switch(input)
-							case: 1 Select weapon A
-								{
-									use player2.weaponA (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player1->getHP(); //displays remaing health for enemy
-								}
-							case: 2 Select weapon B
-								{
-									use player2.weaponB (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player1->getHP(); //displays remaing health for enemy
-								}
-							case: 3 Select weapon C
-								{
-									use player2.weaponC (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player1->getHP(); //displays remaing health for enemy
-								}
-							case: 4 Select weapon D
-								{
-									use player2.weaponD (apply cost to player1)
-									implement damage/hit points (apply damage to other player)
-									player1->getHP(); //displays remaing health for enemy
-								}
-							case: 5 Print Current Mech Stats
-								{
-									player2.display_stats
-									player2->getHP(); //displays remaing health for current player
-								}
-							case: 6 End turn early
-								{
-									break;
-								}
-						}
-					}
+			//get input
+			while (1)
+			{
+				std::string input;
+				std::getline(std::cin, input);
+				std::stringstream myStream(input);
+				if (myStream >> menuSelection)
+				{
+					break;
+				}
+				std::cout << "Invalid Input, please try again" << std::endl;
 			}
 
 
-			if(player1 HP >= 1 && player2 HP <= 0)
+			switch (menuSelection)
 			{
-				player1 wins
+			case 1: //Select Left Hand Weapon
+			{
+				//std::cout << "Left Hand Weapon:  " << player1->set_leftHand_weapon << player1.
+				//player1.//use player1.weaponA (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player1->get_leftHand_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->printPWR();  // displays current power
+				player1->drawPWR(player1->leftHandCost());  //calculates power draw 
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->getHP(); //displays remaing health for enemy
+				player2->computeDamageReceived(player1->leftHandDMG());
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
 			}
-			else if(playder1 HP <= 0 && player2 HP >= 1)
+
+			case 2: // Select Right Hand Weapon
 			{
-				player2 wins
+				//use player1.weaponB (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				//player2->getHP(); //displays remaing health for enemy
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player1->get_rightHand_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->printPWR();  // displays current power
+				player1->drawPWR(player1->rightHandCost());  //calculates power draw 
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->getHP(); //displays remaing health for enemy
+				player2->computeDamageReceived(player1->rightHandDMG());
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+			case 3: //Select Left Back Weapon
+			{
+				//use player1.weaponB (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				//player2->getHP(); //displays remaing health for enemy
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player1->get_leftBack_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->printPWR();  // displays current power
+				player1->drawPWR(player1->leftBackCost());  //calculates power draw 
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->getHP(); //displays remaing health for enemy
+				player2->computeDamageReceived(player1->leftBackDMG());
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+			case 4: //Select Right Back Weapon
+			{
+				//use player1.weaponB (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				//player2->getHP(); //displays remaing health for enemy
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player1->get_rightBack_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->printPWR();  // displays current power
+				player1->drawPWR(player1->rightBackCost());  //calculates power draw 
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->getHP(); //displays remaing health for enemy
+				player2->computeDamageReceived(player1->rightBackDMG());
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+			case 5:  // Print Current Mech Stats
+			{
+				player1->display_stats();
+				player1->getHP(); //displays remaing health for current player
+				break;
+			}
+			case 6: // End turn early
+			{
+				break;
+			}
+			}
+		}
+
+		if (player1->computeHP() >= 1 && player2->computeHP() <= 0)
+		{
+			//player1 wins
+			std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "|  Player 1 WINs!!  |" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
+			break;
+		}
+		else if (player1->computeHP() <= 0 && player2->computeHP() >= 1)
+		{
+			//player2 wins
+			std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "|  Player 2 WINs!!  |" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
+			break;
+		}
+		else
+		{
+			continue;
+		}
+
+		while (player2->getPWR() >= 1)
+		{
+			//prints player menu
+			std::cout << "\nPlayer 2, please select from an option below: (type the number of the option)" << std::endl;
+			std::cout << "1 - Use Left Hand Weapon" << std::endl;
+			std::cout << "2 - Use Right Hand Weapon" << std::endl;
+			std::cout << "3 - Use Left Back Weapon" << std::endl;
+			std::cout << "4 - Use Right Back Weapon" << std::endl;
+			std::cout << "5 - Print Current Mech Stats" << std::endl;
+			std::cout << "6 - End player turn early" << std::endl;
+
+			int menuSelection = 0;
+
+			//get input
+			while (1)
+			{
+				std::string input;
+				std::getline(std::cin, input);
+				std::stringstream myStream(input);
+				if (myStream >> menuSelection)
+				{
+					break;
+				}
+				std::cout << "Invalid Input, please try again" << std::endl;
+			}
+
+
+			switch (menuSelection)
+			{
+			case 1: //Select Left Hand Weapon
+			{
+				//std::cout << "Left Hand Weapon:  " << player2->set_leftHand_weapon << player2.
+				//player2.//use player1.weaponA (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player2->get_leftHand_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->printPWR();  // displays current power
+				player2->drawPWR(player2->leftHandCost());  //calculates power draw 
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->getHP(); //displays remaing health for enemy
+				player1->computeDamageReceived(player2->leftHandDMG());
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+
+			case 2: // Select Right Hand Weapon
+			{
+				//use player1.weaponB (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				//player2->getHP(); //displays remaing health for enemy
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player2->get_rightHand_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->printPWR();  // displays current power
+				player2->drawPWR(player2->rightHandCost());  //calculates power draw 
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->getHP(); //displays remaing health for enemy
+				player1->computeDamageReceived(player2->rightHandDMG());
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+			case 3: //Select Left Back Weapon
+			{
+				//use player1.weaponB (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				//player2->getHP(); //displays remaing health for enemy
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player2->get_leftBack_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player2->printPWR();  // displays current power
+				player2->drawPWR(player2->leftBackCost());  //calculates power draw 
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player2->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player1->getHP(); //displays remaing health for enemy
+				player1->computeDamageReceived(player2->leftBackDMG());
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player1->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+			case 4: //Select Right Back Weapon
+			{
+				//use player1.weaponB (apply cost to player1)
+				//implement damage/hit points (apply damage to other player)
+				//player2->getHP(); //displays remaing health for enemy
+				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+				player2->get_rightBack_weapon();  // displays which weapon was selected
+				std::cout << "\nPlayer 1 Before Attack:  ";
+				player2->printPWR();  // displays current power
+				player2->drawPWR(player2->rightBackCost());  //calculates power draw 
+				std::cout << "\nPlayer 1 After Attack:  ";
+				player2->printPWR();
+				std::cout << "\n-----------------------------------------------------------------" << std::endl;
+				std::cout << "\nPlayer 2 Before Attack:  ";
+				player1->getHP(); //displays remaing health for enemy
+				player1->computeDamageReceived(player2->rightBackDMG());
+				std::cout << "\nPlayer 2 After Attack:  ";
+				player1->getHP();
+				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
+				break;
+			}
+			case 5:  // Print Current Mech Stats
+			{
+				player2->display_stats();
+				player2->getHP(); //displays remaing health for current player
+				break;
+			}
+			case 6: // End turn early
+			{
+				break;
+			}
+			}
+		}
+		if (player1->computeHP() >= 1 && player2->computeHP() <= 0)
+		{
+			//player1 wins
+			std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "|  Player 1 WINs!!  |" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
+			break;
+		}
+		else if (player1->computeHP() <= 0 && player2->computeHP() >= 1)
+		{
+			//player2 wins
+			std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "|  Player 2 WINs!!  |" << std::endl;
+			std::cout << "|                   |" << std::endl;
+			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
+			break;
+		}
+		else
+		{
+			continue;
+		}
+	}
+/*
+
+			if(player1->computeHP() >= 1 && player2->computeHP() <= 0)
+			{
+				//player1 wins
+				std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
+				std::cout << "|                   |" << std::endl;
+				std::cout << "|  Player 1 WINs!!  |" << std::endl;
+				std::cout << "|                   |" << std::endl;
+				std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
+			}
+			else if(player1->computeHP() <= 0 && player2->computeHP() >= 1)
+			{
+				//player2 wins
+				std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
+				std::cout << "|                   |" << std::endl;
+				std::cout << "|  Player 2 WINs!!  |" << std::endl;
+				std::cout << "|                   |" << std::endl;
+				std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
 			}
 			else
 			{
-				winner could not be determined
+				std::cout << "\n\nERROR:  Winner could not be determined.\n\n" << std::endl;
 			}
 
 
-
-	*/
+*/
+	
 
 
 

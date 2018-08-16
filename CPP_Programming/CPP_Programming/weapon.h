@@ -28,4 +28,19 @@ public:
 		std::cout << "Damage: " << damage << std::endl;
 		std::cout << "Cost: " << cost << std::endl;
 	}
+	int getDMG() {
+		
+		return damage;
+	}
+
+	int getCost() {
+
+		return cost;
+	}
+
+	std::string getWPNname() {
+
+		return weaponName;
+	}
+
 };
