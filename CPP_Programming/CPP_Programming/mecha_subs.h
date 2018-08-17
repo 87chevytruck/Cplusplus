@@ -143,11 +143,11 @@ public:
 
 
 class NEXT : public Mecha {
-private:
+/*private:
 	Weapon LHandW;
 	Weapon RHandW;
 	Weapon LBackW;
-	Weapon RBackW;
+	Weapon RBackW;*/
 
 public:
 	// Default Constructor
@@ -165,7 +165,7 @@ public:
 		power = pwr;
 	}
 	// Below sets weapons, take weapon object
-	void set_leftHand_weapon(Weapon wp) {
+	/*void set_leftHand_weapon(Weapon wp) {
 		LHandW = wp;
 	}
 	void set_rightHand_weapon(Weapon wp) {
@@ -268,17 +268,17 @@ public:
 		RBackW.display_weapon_stats();
 		std::cout << "\n\n\n\n";
 
-	}
+	}*/
 };
 
 
 class MobileSuit : public Mecha {
 	// This mech only has two weapons
-private:
+/*private:
 	Weapon LHandW;
 	Weapon RHandW;
 	Weapon LBackW;
-	Weapon RBackW;
+	Weapon RBackW;*/
 
 public:
 	// Default Constructor
@@ -296,7 +296,7 @@ public:
 		power = pwr;
 	}
 	// Below sets weapons, take weapon object
-	void set_leftHand_weapon(Weapon wp) {
+	/*void set_leftHand_weapon(Weapon wp) {
 		LHandW = wp;
 	}
 	void set_rightHand_weapon(Weapon wp) {
@@ -399,16 +399,16 @@ public:
 			std::cout << "\nRight Back Weapon: " << std::endl;
 			RBackW.display_weapon_stats();
 			std::cout << "\n\n\n\n";
-		}
+		}*/
 
 };
 
 class Terminator : public Mecha {
-private:
+/*private:
 	Weapon LHandW;
 	Weapon RHandW;
 	Weapon LBackW;
-	Weapon RBackW;
+	Weapon RBackW;*/
 
 public:
 	// Default Constructor
@@ -426,7 +426,7 @@ public:
 		power = pwr;
 	}
 	// Below sets weapons, take weapon object
-	void set_leftHand_weapon(Weapon wp) {
+	/*void set_leftHand_weapon(Weapon wp) {
 		LHandW = wp;
 	}
 	void set_rightHand_weapon(Weapon wp) {
@@ -530,5 +530,5 @@ public:
 		RBackW.display_weapon_stats();
 		std::cout << "\n\n\n\n";
 
-	}
+	}*/
 };
