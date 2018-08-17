@@ -56,19 +56,11 @@ int main() {
 
 
 	// Default Mecha for initial assignment to player1 and player2
-	//DEFAULT playerINT("Default", "Default", 100);
-	//DEFAULT * player1;
-	//DEFAULT * player2;
 	Mecha *player1;
 	Mecha *player2;
-	//NEXT * player1 = &WG;
-	//Terminator * player2 = &T9;
-	//MobileSuit * player3 = &Ksh;
-
 	player1 = (NEXT *)&WG;
 	player2 = (MobileSuit *)&Ksh;
 
-	//NEXT next;
 
 	// Now we can do our main logic
 	WG.display_stats();
@@ -94,30 +86,23 @@ int main() {
 		if (player1input == " WG " || player1input == " wg " || player1input == "WG" || player1input == "wg")
 		{
 			//assign player1 to the White Glint Mecha
-			//NEXT * player1 = &WG;
-
-			//player1 = (NEXT *)&next;
 			player1 = (NEXT *)&WG;
 			std::cout << "Player 1 is now White Glint Mecha\n" << std::endl;
-			//player1.
+
 			count++;
 		}
 		else if (player1input == " KSH " || player1input == " ksh " || player1input == "KSH" || player1input == "ksh")
 		{
 			//assign player1 to the Kshatriya Mecha
-			//MobileSuit * player1 = &Ksh;
 			player1 = (MobileSuit *)&Ksh;
 			std::cout << "Player 1 is now Kshatriya Mecha\n" << std::endl;
-			//player1->display_stats();
 			count++;
 		}
 		else if (player1input == " T9 " || player1input == " t9 " || player1input == "t9" || player1input == "T9")
 		{
 			//assign player1 to the T-9000 Terminator Mecha
-			//Terminator * player1 = &T9;
 			player1 = (Terminator *)&T9;
 			std::cout << "Player 1 is now T-9000 Terminator Mecha\n" << std::endl;
-			//player1->display_stats();
 			count++;
 		}
 		else if (player1input == " exit " || player1input == "exit" || player1input == " Exit " || player1input == "Exit")
@@ -145,29 +130,44 @@ int main() {
 		if (player2input == " WG " || player2input == " wg " || player2input == "WG" || player2input == "wg")
 		{
 			//assign player2 to the White Glint Mecha
-			//NEXT * player2 = &WG;
-			player2 = (NEXT *)&WG;
-			std::cout << "Player 2 is now White Glint Mecha\n" << std::endl;
-			//player2->display_stats();
-			count++;
+			if (player1input != " WG " && player1input != " wg " && player1input != "WG" && player1input != "wg")
+			{
+				player2 = (NEXT *)&WG;
+				std::cout << "Player 2 is now White Glint Mecha\n" << std::endl;
+				count++;
+			}
+			else
+			{
+				std::cout << "ERROR:  This Mecha is in use already by Player 1." << std::endl;
+			}
 		}
 		else if (player2input == " KSH " || player2input == " ksh " || player2input == "KSH" || player2input == "ksh")
 		{
 			//assign player2 to the Kshatriya Mecha
-			//MobileSuit * player2 = &Ksh;
+			if (player1input != " KSH " && player1input != " ksh " && player1input != "KSH" && player1input != "ksh")
+			{
 			player2 = (MobileSuit *)&Ksh;
 			std::cout << "Player 2 is now Kshatriya Mecha\n" << std::endl;
-			//player2->display_stats();
 			count++;
+			}
+			else
+			{
+				std::cout << "ERROR:  This Mecha is in use already by Player 1." << std::endl;
+			}
 		}
 		else if (player2input == " T9 " || player2input == " t9 " || player2input == "t9" || player2input == "T9")
 		{
 			//assign player2 to the T-9000 Terminator Mecha
-			//Terminator * player2 = &T9;
+			if (player1input != " T9 " && player1input != " t9 " && player1input != "t9" && player1input != "T9")
+			{
 			player2 = (Terminator *)&T9;
 			std::cout << "Player 2 is now T-9000 Terminator Mecha\n" << std::endl;
-			//player2->display_stats();
 			count++;
+			}
+			else
+			{
+				std::cout << "ERROR:  This Mecha is in use already by Player 1." << std::endl;
+			}
 			
 		}
 		else if (player2input == " exit " || player2input == "exit" || player2input == " Exit " || player2input == "Exit")
@@ -180,18 +180,6 @@ int main() {
 			std::cout << "ERROR:  Invalid response for Player 2.  Please try again." << std::endl;
 		}
 	}
-
-/*	std::cout << "***********************************************************************************" << std::endl;
-	player1->display_main_stats();
-	std::cout << std::endl;
-	player2->display_main_stats();
-	std::cout << "***********************************************************************************" << std::endl;
-	player1->display_stats();
-	std::cout << "***********************************************************************************" << std::endl;
-	player2->display_stats();
-	std::cout << "***********************************************************************************" << std::endl;  */
-
-
 
 	//end the game if a player's mech hits <= 0
 	while (player1->computeHP() > 0 && player2->computeHP() > 0)
@@ -240,22 +228,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//std::cout << "Left Hand Weapon:  " << player1->set_leftHand_weapon << player1.
-				//player1.//use player1.weaponA (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player1->get_leftHand_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->printPWR();  // displays current power
 				player1->drawPWR(player1->leftHandCost());  //calculates power draw 
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->printPWR();
+				player1->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->getHP(); //displays remaing health for enemy
-				player2->computeDamageReceived(player1->leftHandDMG());
+				player2->computeDamageReceived(player1->leftHandDMG());  //applies damage to other player
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->getHP();
+				player2->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -267,22 +253,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//use player1.weaponB (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
-				//player2->getHP(); //displays remaing health for enemy
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player1->get_rightHand_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->printPWR();  // displays current power
 				player1->drawPWR(player1->rightHandCost());  //calculates power draw 
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->printPWR();
+				player1->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->getHP(); //displays remaing health for enemy
-				player2->computeDamageReceived(player1->rightHandDMG());
+				player2->computeDamageReceived(player1->rightHandDMG());  //applies damage to other player
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->getHP();
+				player2->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -293,22 +277,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//use player1.weaponB (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
-				//player2->getHP(); //displays remaing health for enemy
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player1->get_leftBack_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->printPWR();  // displays current power
 				player1->drawPWR(player1->leftBackCost());  //calculates power draw 
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->printPWR();
+				player1->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->getHP(); //displays remaing health for enemy
-				player2->computeDamageReceived(player1->leftBackDMG());
+				player2->computeDamageReceived(player1->leftBackDMG());  //applies damage to other player
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->getHP();
+				player2->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -319,22 +301,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//use player1.weaponB (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
-				//player2->getHP(); //displays remaing health for enemy
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player1->get_rightBack_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->printPWR();  // displays current power
 				player1->drawPWR(player1->rightBackCost());  //calculates power draw 
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->printPWR();
+				player1->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->getHP(); //displays remaing health for enemy
-				player2->computeDamageReceived(player1->rightBackDMG());
+				player2->computeDamageReceived(player1->rightBackDMG());  //applies damage to other player
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->getHP();
+				player2->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -410,22 +390,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//std::cout << "Left Hand Weapon:  " << player2->set_leftHand_weapon << player2.
-				//player2.//use player1.weaponA (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player2->get_leftHand_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->printPWR();  // displays current power
 				player2->drawPWR(player2->leftHandCost());  //calculates power draw 
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->printPWR();
+				player2->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->getHP(); //displays remaing health for enemy
-				player1->computeDamageReceived(player2->leftHandDMG());
+				player1->computeDamageReceived(player2->leftHandDMG());  //applies damage to other player
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->getHP();
+				player1->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -437,22 +415,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//use player1.weaponB (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
-				//player2->getHP(); //displays remaing health for enemy
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player2->get_rightHand_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->printPWR();  // displays current power
 				player2->drawPWR(player2->rightHandCost());  //calculates power draw 
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->printPWR();
+				player2->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->getHP(); //displays remaing health for enemy
-				player1->computeDamageReceived(player2->rightHandDMG());
+				player1->computeDamageReceived(player2->rightHandDMG());  //applies damage to other player
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->getHP();
+				player1->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -463,22 +439,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//use player1.weaponB (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
-				//player2->getHP(); //displays remaing health for enemy
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player2->get_leftBack_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player2->printPWR();  // displays current power
 				player2->drawPWR(player2->leftBackCost());  //calculates power draw 
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player2->printPWR();
+				player2->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player1->getHP(); //displays remaing health for enemy
-				player1->computeDamageReceived(player2->leftBackDMG());
+				player1->computeDamageReceived(player2->leftBackDMG());  //applies damage to other player
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player1->getHP();
+				player1->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -489,22 +463,20 @@ int main() {
 					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
 					break;
 				}
-				//use player1.weaponB (apply cost to player1)
-				//implement damage/hit points (apply damage to other player)
-				//player2->getHP(); //displays remaing health for enemy
+
 				std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 				player2->get_rightBack_weapon();  // displays which weapon was selected
 				std::cout << "\nPlayer 1 Before Attack:  ";
 				player2->printPWR();  // displays current power
 				player2->drawPWR(player2->rightBackCost());  //calculates power draw 
 				std::cout << "\nPlayer 1 After Attack:  ";
-				player2->printPWR();
+				player2->printPWR();  // displays current power
 				std::cout << "\n-----------------------------------------------------------------" << std::endl;
 				std::cout << "\nPlayer 2 Before Attack:  ";
 				player1->getHP(); //displays remaing health for enemy
-				player1->computeDamageReceived(player2->rightBackDMG());
+				player1->computeDamageReceived(player2->rightBackDMG());  //applies damage to other player
 				std::cout << "\nPlayer 2 After Attack:  ";
-				player1->getHP();
+				player1->getHP(); //displays remaing health for enemy
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;
 				break;
 			}
@@ -545,9 +517,6 @@ int main() {
 
 	}
 
-	// This is where our game gets programmed
-	// Have fun here 
-	// Don't get stuck on requirments... just do it!
 
 	getchar();
 	getchar();

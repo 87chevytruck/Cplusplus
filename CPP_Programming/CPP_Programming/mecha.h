@@ -24,7 +24,6 @@ public:
 	// Default constructor... subclass should handle construction
 	Mecha() {}
 
-	/////////////////////////////////////////////////////
 	void set_leftHand_weapon(Weapon wp) {
 		LHandW = wp;
 	}
@@ -62,7 +61,7 @@ public:
 
 
 	bool setHP(int hp) {
-		// NEXT units can only have 2000 health
+		// units can only have 2000 health
 		if (hp <= 2000) {
 			hitPoints = hp;
 			return true;
@@ -70,7 +69,7 @@ public:
 		return false;
 	}
 	bool setPWR(int pwr) {
-		// NEXT units can only have 150 power
+		//units can only have 100 power
 		if (pwr <= 100) {
 			power = pwr;
 			return true;
@@ -162,11 +161,11 @@ public:
 	}
 	void drawPWR(int powerDraw) {
 
-		power = power - powerDraw;
+		power = power - powerDraw;  //calculates power draw for weapon use
 	}
 	void rechargePWR(int powerCharge) {
 
-		power = powerCharge;
+		power = powerCharge;  //used for recharging mech for next turn
 	}
 	int computeHP() {
 		
