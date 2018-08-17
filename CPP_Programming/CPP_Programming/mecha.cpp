@@ -59,10 +59,12 @@ int main() {
 	//DEFAULT playerINT("Default", "Default", 100);
 	//DEFAULT * player1 = &playerINT;
 	//DEFAULT * player2 = &playerINT;
-	Mecha *player1 = NULL;
-	Mecha *player2 = NULL;
+	//Mecha *player1;
+	//Mecha *player2;
 	//NEXT * player1 = &WG;
 	//Terminator * player2 = &T9;
+	//player1 = (NEXT *)&WG;
+	//player2 = (MobileSuit *)&Ksh;
 
 	//NEXT next;
 
@@ -76,6 +78,13 @@ int main() {
 	std::string player1input;
 	std::string player2input;
 	int count = 0;
+	int x1 = 0;
+	int x2 = 0;
+	int x3 = 0;
+	int y1 = 0;
+	int y2 = 0;
+	int y3 = 0;
+
 
 	//allow user 1 to select a Mecha
 	while (count == 0)
@@ -92,27 +101,30 @@ int main() {
 			//NEXT * player1 = &WG;
 
 			//player1 = (NEXT *)&next;
-			player1 = (NEXT *)&WG;
-			std::cout << "Player 1 is now White Glint Mecha" << std::endl;
+			//player1 = (NEXT *)&WG;
+			//std::cout << "Player 1 is now White Glint Mecha" << std::endl;
 			//player1.
+			x1++;
 			count++;
 		}
 		else if (player1input == " KSH " || player1input == " ksh " || player1input == "KSH" || player1input == "ksh")
 		{
 			//assign player1 to the Kshatriya Mecha
 			//MobileSuit * player1 = &Ksh;
-			player1 = (MobileSuit *)&Ksh;
-			std::cout << "Player 1 is now Kshatriya Mecha" << std::endl;
+			//player1 = (MobileSuit *)&Ksh;
+			//std::cout << "Player 1 is now Kshatriya Mecha" << std::endl;
 			//player1->display_stats();
+			x2++;
 			count++;
 		}
 		else if (player1input == " T9 " || player1input == " t9 " || player1input == "t9" || player1input == "T9")
 		{
 			//assign player1 to the T-9000 Terminator Mecha
 			//Terminator * player1 = &T9;
-			player1 = (Terminator *)&T9;
-			std::cout << "Player 1 is now T-9000 Terminator Mecha" << std::endl;
+			//player1 = (Terminator *)&T9;
+			//std::cout << "Player 1 is now T-9000 Terminator Mecha" << std::endl;
 			//player1->display_stats();
+			x3++;
 			count++;
 		}
 		else if (player1input == " exit " || player1input == "exit" || player1input == " Exit " || player1input == "Exit")
@@ -124,6 +136,28 @@ int main() {
 		{
 			std::cout << "ERROR:  Invalid response for Player 1.  Please try again." << std::endl;
 		}
+	}
+
+	if (x1 != 0)
+	{
+		//assign player1 to the White Glint Mecha
+		NEXT * player1 = &WG;
+		std::cout << "Player 1 is now White Glint Mecha" << std::endl;
+		//player1.
+	}
+	if (x2 != 0)
+	{
+		//assign player1 to the Kshatriya Mecha
+		MobileSuit * player1 = &Ksh;
+		std::cout << "Player 1 is now Kshatriya Mecha" << std::endl;
+		//player1->display_stats();
+	}
+	if (x3 != 0)
+	{
+		//assign player1 to the T-9000 Terminator Mecha
+		Terminator * player1 = &T9;
+		std::cout << "Player 1 is now T-9000 Terminator Mecha" << std::endl;
+		//player1->display_stats();
 	}
 
 	count = 0;
@@ -141,27 +175,30 @@ int main() {
 		{
 			//assign player2 to the White Glint Mecha
 			//NEXT * player2 = &WG;
-			player2 = (NEXT *)&WG;
-			std::cout << "Player 2 is now White Glint Mecha" << std::endl;
+			//player2 = (NEXT *)&WG;
+			//std::cout << "Player 2 is now White Glint Mecha" << std::endl;
 			//player2->display_stats();
+			y1++;
 			count++;
 		}
 		else if (player2input == " KSH " || player2input == " ksh " || player2input == "KSH" || player2input == "ksh")
 		{
 			//assign player2 to the Kshatriya Mecha
 			//MobileSuit * player2 = &Ksh;
-			player2 = (MobileSuit *)&Ksh;
-			std::cout << "Player 2 is now Kshatriya Mecha" << std::endl;
+			//player2 = (MobileSuit *)&Ksh;
+			//std::cout << "Player 2 is now Kshatriya Mecha" << std::endl;
 			//player2->display_stats();
+			y2++;
 			count++;
 		}
 		else if (player2input == " T9 " || player2input == " t9 " || player2input == "t9" || player2input == "T9")
 		{
 			//assign player2 to the T-9000 Terminator Mecha
 			//Terminator * player2 = &T9;
-			player2 = (Terminator *)&T9;
-			std::cout << "Player 2 is now T-9000 Terminator Mecha" << std::endl;
+			//player2 = (Terminator *)&T9;
+			//std::cout << "Player 2 is now T-9000 Terminator Mecha" << std::endl;
 			//player2->display_stats();
+			y3++;
 			count++;
 			
 		}
@@ -174,6 +211,28 @@ int main() {
 		{
 			std::cout << "ERROR:  Invalid response for Player 2.  Please try again." << std::endl;
 		}
+	}
+
+	if (y1 != 0)
+	{
+		//assign player1 to the White Glint Mecha
+		NEXT * player2 = &WG;
+		std::cout << "Player 2 is now White Glint Mecha" << std::endl;
+		//player1.
+	}
+	if (y2 != 0)
+	{
+		//assign player1 to the Kshatriya Mecha
+		MobileSuit * player2 = &Ksh;
+		std::cout << "Player 2 is now Kshatriya Mecha" << std::endl;
+		//player1->display_stats();
+	}
+	if (y3 != 0)
+	{
+		//assign player1 to the T-9000 Terminator Mecha
+		Terminator * player2 = &T9;
+		std::cout << "Player 2 is now T-9000 Terminator Mecha" << std::endl;
+		//player1->display_stats();
 	}
 
 
