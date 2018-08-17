@@ -277,6 +277,8 @@ class MobileSuit : public Mecha {
 private:
 	Weapon LHandW;
 	Weapon RHandW;
+	Weapon LBackW;
+	Weapon RBackW;
 
 public:
 	// Default Constructor
@@ -300,6 +302,12 @@ public:
 	void set_rightHand_weapon(Weapon wp) {
 		RHandW = wp;
 	}
+	void set_leftBack_weapon(Weapon wp) {
+		LBackW = wp;
+	}
+	void set_rightBack_weapon(Weapon wp) {
+		RBackW = wp;
+	}
 
 	// Get weapon name for Mech
 	void get_leftHand_weapon() {
@@ -312,7 +320,7 @@ public:
 		std::cout << RHandW.getWPNname();
 		std::cout << " Selected" << std::endl;
 	}
-/*	void get_leftBack_weapon() {
+	void get_leftBack_weapon() {
 		std::cout << "Left Back Weapon:  ";
 		std::cout << LBackW.getWPNname();
 		std::cout << " Selected" << std::endl;
@@ -321,7 +329,7 @@ public:
 		std::cout << "Right Back Weapon:  ";
 		std::cout << LBackW.getWPNname();
 		std::cout << " Selected" << std::endl;
-	}*/
+	}
 
 	// allows dynamic use of weapon damage for pointer player
 	int leftHandDMG() {
@@ -332,14 +340,14 @@ public:
 
 		return RHandW.getDMG();
 	}
-//	int leftBackDMG() {
-//
-//		return LBackW.getDMG();
-//	}
-//	int rightBackDMG() {
-//
-//		return LBackW.getDMG();
-//	}
+	int leftBackDMG() {
+
+		return LBackW.getDMG();
+	}
+	int rightBackDMG() {
+
+		return LBackW.getDMG();
+	}
 
 
 	bool setHP(int hp) {
@@ -368,14 +376,14 @@ public:
 
 		return RHandW.getCost();
 	}
-//	int leftBackCost() {
-//
-//		return LBackW.getCost();
-//	}
-//	int rightBackCost() {
-//
-//		return LBackW.getCost();
-//	}
+	int leftBackCost() {
+
+		return LBackW.getCost();
+	}
+	int rightBackCost() {
+
+		return LBackW.getCost();
+	}
 
 		void display_stats()
 		{
@@ -386,10 +394,10 @@ public:
 			LHandW.display_weapon_stats();
 			std::cout << "\nRight Hand Weapon:" << std::endl;
 			RHandW.display_weapon_stats();
-			//	std::cout << "\nLeft Back Weapon: " << std::endl;
-			//	LBackW.display_weapon_stats();
-			//	std::cout << "\nRight Back Weapon: " << std::endl;
-			//	RBackW.display_weapon_stats();
+			std::cout << "\nLeft Back Weapon: " << std::endl;
+			LBackW.display_weapon_stats();
+			std::cout << "\nRight Back Weapon: " << std::endl;
+			RBackW.display_weapon_stats();
 			std::cout << "\n\n\n\n";
 		}
 
