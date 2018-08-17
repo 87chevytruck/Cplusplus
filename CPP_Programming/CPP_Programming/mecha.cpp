@@ -167,21 +167,6 @@ int main() {
 		}
 	}*/
 
-	/*std::cout << "\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
-	player1->get_leftHand_weapon();  // displays which weapon was selected
-	std::cout << "\nPlayer 1 Before Attack:  ";
-	player1->printPWR();  // displays current power
-	player1->drawPWR(player1->leftHandCost());  //calculates power draw 
-	std::cout << "\nPlayer 1 After Attack:  ";
-	player1->printPWR();
-	std::cout << "\n-----------------------------------------------------------------" << std::endl;
-	std::cout << "\nPlayer 2 Before Attack:  ";
-	player2->getHP(); //displays remaing health for enemy
-	player2->computeDamageReceived(player1->leftHandDMG());
-	std::cout << "\nPlayer 2 After Attack:  ";
-	player2->getHP();
-	std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n" << std::endl;*/
-
 
 	//end the game if a player's mech hits <= 0
 	while (player1->computeHP() > 0 && player2->computeHP() > 0)
@@ -189,12 +174,12 @@ int main() {
 
 		//allow users to take turns attacking
 		//----allow users to decide which weapon to use during the their turn
-		//prevent actions if user runs out of power
-		//allow user to end their turn regardless of how much power is left
-		player1->rechargePWR(100);
-		player2->rechargePWR(100);
+	
+	
+		player1->rechargePWR(100);  //initializes and recharges power each time players take turns
+		player2->rechargePWR(100);  //initializes and recharges power each time players take turns
 
-		while (player1->getPWR() >= 1)
+		while (player1->getPWR() >= 1)	//prevent actions if user runs out of power
 		{
 			//prints player menu
 			std::cout << "\nPlayer 1, please select from an option below: (type the number of the option)" << std::endl;
@@ -225,6 +210,11 @@ int main() {
 			{
 			case 1: //Select Left Hand Weapon
 			{
+				if (player1->getPWR() < player1->leftHandCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//std::cout << "Left Hand Weapon:  " << player1->set_leftHand_weapon << player1.
 				//player1.//use player1.weaponA (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
@@ -247,6 +237,11 @@ int main() {
 
 			case 2: // Select Right Hand Weapon
 			{
+				if (player1->getPWR() < player1->rightHandCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//use player1.weaponB (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
 				//player2->getHP(); //displays remaing health for enemy
@@ -268,6 +263,11 @@ int main() {
 			}
 			case 3: //Select Left Back Weapon
 			{
+				if (player1->getPWR() < player1->leftBackCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//use player1.weaponB (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
 				//player2->getHP(); //displays remaing health for enemy
@@ -289,6 +289,11 @@ int main() {
 			}
 			case 4: //Select Right Back Weapon
 			{
+				if (player1->getPWR() < player1->rightBackCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//use player1.weaponB (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
 				//player2->getHP(); //displays remaing health for enemy
@@ -315,7 +320,9 @@ int main() {
 				break;
 			}
 			case 6: // End turn early
-			{
+			{  	//allow user to end their turn regardless of how much power is left
+				std::cout << "Player 1 has chosen to end their turn." << std::endl;
+				player1->drawPWR(1000);
 				break;
 			}
 			}
@@ -331,7 +338,7 @@ int main() {
 			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
 			break;
 		}
-		else if (player1->computeHP() <= 0 && player2->computeHP() >= 1)
+		if (player1->computeHP() <= 0 && player2->computeHP() >= 1)
 		{
 			//player2 wins
 			std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
@@ -341,12 +348,8 @@ int main() {
 			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
 			break;
 		}
-		else
-		{
-			continue;
-		}
-
-		while (player2->getPWR() >= 1)
+		
+		while (player2->getPWR() >= 1)	//prevent actions if user runs out of power
 		{
 			//prints player menu
 			std::cout << "\nPlayer 2, please select from an option below: (type the number of the option)" << std::endl;
@@ -377,6 +380,11 @@ int main() {
 			{
 			case 1: //Select Left Hand Weapon
 			{
+				if (player2->getPWR() < player2->leftHandCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//std::cout << "Left Hand Weapon:  " << player2->set_leftHand_weapon << player2.
 				//player2.//use player1.weaponA (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
@@ -399,6 +407,11 @@ int main() {
 
 			case 2: // Select Right Hand Weapon
 			{
+				if (player2->getPWR() < player2->rightHandCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//use player1.weaponB (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
 				//player2->getHP(); //displays remaing health for enemy
@@ -420,6 +433,11 @@ int main() {
 			}
 			case 3: //Select Left Back Weapon
 			{
+				if (player2->getPWR() < player2->leftBackCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//use player1.weaponB (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
 				//player2->getHP(); //displays remaing health for enemy
@@ -441,6 +459,11 @@ int main() {
 			}
 			case 4: //Select Right Back Weapon
 			{
+				if (player2->getPWR() < player2->rightBackCost())	//prevent actions if user runs out of power
+				{
+					std::cout << "ERROR:  Not enough power available to use this weapon." << std::endl;
+					break;
+				}
 				//use player1.weaponB (apply cost to player1)
 				//implement damage/hit points (apply damage to other player)
 				//player2->getHP(); //displays remaing health for enemy
@@ -467,7 +490,9 @@ int main() {
 				break;
 			}
 			case 6: // End turn early
-			{
+			{  	//allow user to end their turn regardless of how much power is left
+				std::cout << "Player 2 has chosen to end their turn." << std::endl;
+				player2->drawPWR(1000);
 				break;
 			}
 			}
@@ -482,7 +507,7 @@ int main() {
 			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
 			break;
 		}
-		else if (player1->computeHP() <= 0 && player2->computeHP() >= 1)
+		if (player1->computeHP() <= 0 && player2->computeHP() >= 1)
 		{
 			//player2 wins
 			std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
@@ -492,43 +517,8 @@ int main() {
 			std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
 			break;
 		}
-		else
-		{
-			continue;
-		}
+
 	}
-/*
-
-			if(player1->computeHP() >= 1 && player2->computeHP() <= 0)
-			{
-				//player1 wins
-				std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
-				std::cout << "|                   |" << std::endl;
-				std::cout << "|  Player 1 WINs!!  |" << std::endl;
-				std::cout << "|                   |" << std::endl;
-				std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
-			}
-			else if(player1->computeHP() <= 0 && player2->computeHP() >= 1)
-			{
-				//player2 wins
-				std::cout << "\n\n+*+*+*+*+*+*+*+*+*+*+" << std::endl;
-				std::cout << "|                   |" << std::endl;
-				std::cout << "|  Player 2 WINs!!  |" << std::endl;
-				std::cout << "|                   |" << std::endl;
-				std::cout << "+*+*+*+*+*+*+*+*+*+*+\n\n" << std::endl;
-			}
-			else
-			{
-				std::cout << "\n\nERROR:  Winner could not be determined.\n\n" << std::endl;
-			}
-
-
-*/
-	
-
-
-
-
 
 	// This is where our game gets programmed
 	// Have fun here 
