@@ -35,7 +35,7 @@ int main() {
 	bool validHP2 = false;
 	while (!validHP2) {
 		// update with user input
-		validHP2 = Ksh.setHP(500);
+		validHP2 = Ksh.setHP(2500);
 	}
 	Ksh.set_leftHand_weapon(MC1);
 	Ksh.set_rightHand_weapon(MC1);

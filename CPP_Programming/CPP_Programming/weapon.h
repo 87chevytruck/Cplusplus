@@ -23,10 +23,10 @@ public:
 		cost = ct;
 	}
 	void display_weapon_stats() {
-		std::cout << "Model: " << weaponName << std::endl;
-		std::cout << "Type: " << weaponType << std::endl;
-		std::cout << "Damage: " << damage << std::endl;
-		std::cout << "Cost: " << cost << std::endl;
+		std::cout << "\t\tModel: " << weaponName << std::endl;
+		std::cout << "\t\tType: " << weaponType << std::endl;
+		std::cout << "\t\tDamage: " << damage << std::endl;
+		std::cout << "\t\tCost: " << cost << std::endl;
 	}
 	int getDMG() {
 		

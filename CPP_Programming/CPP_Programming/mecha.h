@@ -39,30 +39,29 @@ public:
 
 	// Get weapon name for Mech
 	void get_leftHand_weapon() {
-		std::cout << "Left Hand Weapon:  ";
+		std::cout << "\t\tLeft Hand Weapon:  ";
 		std::cout << LHandW.getWPNname();
-		std::cout << " Selected" << std::endl;
 	}
 	void get_rightHand_weapon() {
-		std::cout << "Right Hand Weapon:  ";
+		std::cout << "\t\tRight Hand Weapon:  ";
 		std::cout << RHandW.getWPNname();
-		std::cout << " Selected" << std::endl;
+	
 	}
 	void get_leftBack_weapon() {
-		std::cout << "Left Back Weapon:  ";
+		std::cout << "\t\tLeft Back Weapon:  ";
 		std::cout << LBackW.getWPNname();
-		std::cout << " Selected" << std::endl;
+	
 	}
 	void get_rightBack_weapon() {
-		std::cout << "Right Back Weapon:  ";
+		std::cout << "\t\tRight Back Weapon:  ";
 		std::cout << LBackW.getWPNname();
-		std::cout << " Selected" << std::endl;
+	
 	}
 
 
 	bool setHP(int hp) {
 		// units can only have 2000 health
-		if (hp <= 2000) {
+		if (hp <= 2500) {
 			hitPoints = hp;
 			return true;
 		}
@@ -114,16 +113,16 @@ public:
 	}
 
 	void display_stats() {
-		std::cout << "********* Displaying Stats *********" << std::endl;
+		std::cout << "\t\t********* Displaying Stats *********" << std::endl;
 		display_main_stats();
-		std::cout << "===== WEAPONS =====\n" << std::endl;
-		std::cout << "Left Hand Weapon:" << std::endl;
+		std::cout << "\t\t===== WEAPONS =====\n" << std::endl;
+		std::cout << "\t\tLeft Hand Weapon:" << std::endl;
 		LHandW.display_weapon_stats();
-		std::cout << "\nRight Hand Weapon:" << std::endl;
+		std::cout << "\n\t\tRight Hand Weapon:" << std::endl;
 		RHandW.display_weapon_stats();
-		std::cout << "\nLeft Back Weapon: " << std::endl;
+		std::cout << "\n\t\tLeft Back Weapon: " << std::endl;
 		LBackW.display_weapon_stats();
-		std::cout << "\nRight Back Weapon: " << std::endl;
+		std::cout << "\n\t\tRight Back Weapon: " << std::endl;
 		RBackW.display_weapon_stats();
 		std::cout << "\n\n\n\n";
 
@@ -132,9 +131,9 @@ public:
 	////////////////////////////////////////////////////
 	// You will want to either override this function to add weapon and specific stats... or just utilize it as is and create a new method inside your sub mecha
 	virtual void display_main_stats() {
-		std::cout << "Model: " << mechaName << std::endl;
-		std::cout << "Variant: " << variant << std::endl;
-		std::cout << "Type : " << type << std::endl;
+		std::cout << "\t\tModel: " << mechaName << std::endl;
+		std::cout << "\t\tVariant: " << variant << std::endl;
+		std::cout << "\t\tType : " << type << std::endl;
 	}
 	/*
 	Use this method if you want to determine how much damage your mecha takes
@@ -148,11 +147,11 @@ public:
 	}
 	// Bare minimum... use this to see if your mech is dead yet
 	int getHP() {
-		std::cout << "\nHit Points Remaining:  " << hitPoints << std::endl;
+		std::cout << "\n\t\tHit Points Remaining:  " << hitPoints << std::endl;
 		return hitPoints;
 	}
 	int printPWR() {
-		std::cout << "\nPower Remaining:  " << power << std::endl;
+		std::cout << "\n\t\tPower Remaining:  " << power << std::endl;
 		return power;
 	}
 	int getPWR() {

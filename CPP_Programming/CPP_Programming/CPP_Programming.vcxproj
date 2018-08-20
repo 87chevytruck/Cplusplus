@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mecha.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="mecha.h" />
     <ClInclude Include="mecha_subs.h" />
     <ClInclude Include="weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mecha-random aim.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

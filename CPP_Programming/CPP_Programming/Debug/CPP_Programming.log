@@ -1,2 +1,7 @@
-﻿  mecha.cpp
+﻿  mecha-random aim.cpp
+c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\mecha-random aim.cpp(30): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\mecha-random aim.cpp(566): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\mecha-random aim.cpp(573): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\mecha-random aim.cpp(603): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\dotlaptop\desktop\cpp myrepos\cpp_programming\cpp_programming\mecha-random aim.cpp(610): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   CPP_Programming.vcxproj -> C:\Users\DOTlaptop\Desktop\CPP MyRepos\CPP_Programming\Debug\CPP_Programming.exe
